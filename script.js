@@ -15,7 +15,7 @@ const getGenerator = function () {
         let numUser = prompt('Угадай число от 1 до 100');
         count--
         if (+numUser === numPC) {
-            let restart = confirm( "Попытки закончились, хотите сыграть ещё?");
+            let restart = confirm( "Поздравляю, Вы угадали! Хотите сыграть ещё?");
             if (restart == true) {
                 getGenerator()
             } else {
