@@ -9,24 +9,35 @@ const isNumber = function (num) {
 
 const getGenerator = function () {
     let numPC = Math.ceil(Math.random() * 100)
-    console.log(numPC);
+    let count = 10;
 
     const asking = function () {
         let numUser = prompt('Угадай число от 1 до 100');
-        console.log(typeof numUser, numUser);
+        count--
         if (+numUser === numPC) {
-            return alert( "Поздравляю, Вы угадали!!!");
+            let restart = confirm( "Попытки закончились, хотите сыграть ещё?");
+            if (restart == true) {
+                getGenerator()
+            } else {
+                return alert('Игра окончена!')
+            }
+        } else if (count < 1) {
+            let restart = confirm( "Попытки закончились, хотите сыграть ещё?");
+            if (restart == true) {
+                getGenerator()
+            } else {
+               return alert('Игра окончена!')
+            }
         } else if (numUser == null) {
             return alert( "Игра окончена");
-        }
-        else if (!isNumber(numUser) || numUser.trim() == '') {
-            alert( "Введи число!");
+        } else if (!isNumber(numUser) || numUser.trim() == '') {
+            alert( "Введи число, осталось " + count + " попыток ввода");
             asking();
-        }  else if (numUser > numPC) {
-            alert( "Загаданное число меньше"); 
+        } else if (numUser > numPC) {
+            alert( "Загаданное число меньше, осталось " + count + " попыток ввода"); 
             asking();
         } else if (numUser < numPC && numUser !== 0) {
-            alert( "Загаданное число больше");
+            alert( "Загаданное число больше, осталось " + count + " попыток ввода");
             asking();
         }
     }
